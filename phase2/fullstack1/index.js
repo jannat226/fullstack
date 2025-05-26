@@ -13,23 +13,15 @@ import userRoutes from "./routes/user.routes.js";
 dotenv.config();
 
 const app = express(); // initialization
-// Middleware -> a fun that acces req, res objetc before the route handles run
-app.use(
-  cors({
-    origin: process.env.BASE_URL,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
 
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello, world!");
 });
+
 app.get("/hi", (req, res) => {
   res.send("HEy Jenny");
 });
@@ -39,6 +31,10 @@ db();
 //user routes
 app.use("/api/v1/users", userRoutes);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
+
+app.listen(4000, () => {
+  console.log("Server listening on port 4000");
 });
